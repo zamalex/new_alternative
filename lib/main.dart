@@ -8,59 +8,54 @@ import 'package:alternative_new/Screens/login_and_registerScreen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:country_ip/country_ip.dart';
+
 bool isSaved = false;
 int? CountryId;
-void main() async{
+void main() async {
   MyLocaleController controller = Get.put(MyLocaleController());
   WidgetsFlutterBinding.ensureInitialized();
   Gemini.init(apiKey: 'AIzaSyAXyqfMsYMXtTcHIJv6y3a3nmRo9lnvFbY');
   SharedprefServices sharedprefServices = SharedprefServices();
   String? token = await sharedprefServices.readCache(key: 'token');
   String? lang = await sharedprefServices.readCache(key: "lang");
-  if(lang == "ar")
-    controller.initialLang = Locale("ar");
-  if(lang == "en")
-    controller.initialLang = Locale("en");
-  if(lang == "tr")
-    controller.initialLang = Locale("tr");
-  if(token == null)
-    isSaved =false;
+  if (lang == "ar") controller.initialLang = Locale("ar");
+  if (lang == "en") controller.initialLang = Locale("en");
+  if (lang == "tr") controller.initialLang = Locale("tr");
+  if (token == null)
+    isSaved = false;
   else
-    isSaved =true;
+    isSaved = true;
   final countryIpResponse = await CountryIp.find();
   final countryName = countryIpResponse?.country;
 
-  if(countryName == "Turkey")
+  if (countryName == "Turkey")
     CountryId = 225;
-  else if(countryName == "Egypt")
-    CountryId = 65;
+  else if (countryName == "Egypt") CountryId = 65;
   // User's country : United States
   // User's ip : 9.9.9.9
   runApp(const MyApp());
 }
 
-
-
-class SharedprefServices{
-  Future writeCache({required String key, required String value}) async{
+class SharedprefServices {
+  Future writeCache({required String key, required String value}) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     isSaved = await pref.setString(key, value);
-
   }
 
-  Future? readCache({required String key}) async{
+  Future? readCache({required String key}) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     String? value = await pref.getString(key);
     return value;
   }
 
-  Future removeCache() async{
+  Future removeCache() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     bool isCleared = await pref.clear();
     isSaved = false;
     print(isSaved);
   }
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -76,9 +71,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     Get.put(MyLocaleController());
 
-   MyLocaleController controller = Get.put(MyLocaleController());
+    MyLocaleController controller = Get.put(MyLocaleController());
     // print(sharedprefServices.readCache(key: 'token'));
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       locale: controller.initialLang,
       translations: MyLocale(),
       title: 'Flutter Demo',
@@ -102,8 +98,6 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       home: isSaved == false ? LoginAndRegisterScreen() : HomePage(),
-
     );
   }
 }
-
