@@ -104,46 +104,48 @@ class _ItemDetails extends State<ItemDetails> {
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
-                    width: 120,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.16),
-                            blurRadius: 4,
-                            spreadRadius: 0,
-                            offset: Offset(0, 2),
-                          ),
-                        ]),
-                    child: Card(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "26".tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 14),
-                          ),
-                          SizedBox(height: 5,),
-                          Text(
-                            widget.Item.Type,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                                color: Color(0xFF009639)),
-                          )
-                        ],
+                  Expanded(
+                    child: Container(
+                      width: 120,
+                      height: 80,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.16),
+                              blurRadius: 4,
+                              spreadRadius: 0,
+                              offset: Offset(0, 2),
+                            ),
+                          ]),
+                      child: Card(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "26".tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 14),
+                            ),
+                            SizedBox(height: 5,),
+                            Text(
+                              widget.Item.Type,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                  color: Color(0xFF009639)),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
+                /*  Container(
                     width: 120,
                     height: 80,
                     decoration: BoxDecoration(
@@ -178,11 +180,11 @@ class _ItemDetails extends State<ItemDetails> {
                         ],
                       ),
                     ),
-                  ),
+                  ),*/
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
+                  Expanded(child: Container(
                     width: 120,
                     height: 80,
                     decoration: BoxDecoration(
@@ -217,7 +219,7 @@ class _ItemDetails extends State<ItemDetails> {
                         ],
                       ),
                     ),
-                  ),
+                  )),
                   SizedBox(
                     width: 20,
                   )

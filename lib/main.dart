@@ -1,6 +1,7 @@
 import 'package:alternative_new/Locale/loacle.dart';
 import 'package:alternative_new/Locale/locale_controller.dart';
 import 'package:alternative_new/Screens/home_page.dart';
+import 'package:alternative_new/Screens/splash.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
@@ -31,6 +32,7 @@ void main() async {
   if (countryName == "Turkey")
     CountryId = 225;
   else if (countryName == "Egypt") CountryId = 65;
+
   // User's country : United States
   // User's ip : 9.9.9.9
   runApp(const MyApp());
@@ -97,7 +99,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: isSaved == false ? LoginAndRegisterScreen() : HomePage(),
+      home: isSaved == false ? SplashScreen() : HomePage(),
     );
   }
 }

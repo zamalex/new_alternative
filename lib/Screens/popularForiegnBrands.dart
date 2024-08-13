@@ -34,7 +34,7 @@ class _PopularForiegnBrands extends State<PopularForiegnBrands>{
           Details: item['brand_description'],
           Type: 'product',
           FoundYear: item['brand_year_founderd'] == null ? '' : item['brand_year_founderd'],
-          Country: item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
+          Country: item['brand_origin_country']==null?'':item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
           Name: item['brand_name'],
           id: item['id']));
     }

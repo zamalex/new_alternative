@@ -52,6 +52,7 @@ class _loginWidget extends State<LoginWidget> {
       sharedprefServices.writeCache(key: 'token', value: token);
 
       if (response.statusCode == 200) {
+        isSaved = true;
         Navigator.pop(context);
         Navigator.push(
             context, MaterialPageRoute(builder: (ctx) => HomePage()));

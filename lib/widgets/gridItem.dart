@@ -36,9 +36,12 @@ class GridItem extends StatelessWidget {
               child: InkWell(
                 onTap: _showDetails,
                   child: CachedNetworkImage(
+                    memCacheHeight: 200,
+                    memCacheWidth: 200,
+
                     imageUrl: Item.image,
                     placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => Image.asset('assets/images/logo1.jpg'),
                   ),)),
           Image.asset(smallImage),
         ],

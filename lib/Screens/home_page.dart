@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
+import 'package:alternative_new/Screens/login_and_registerScreen.dart';
 import 'package:alternative_new/main.dart';
 import 'dart:convert';
 import 'package:alternative_new/Locale/locale_controller.dart';
@@ -86,7 +87,7 @@ String? _scanBarcodeResult;
                Details: item['brand_description'],
                Type: 'product',
                FoundYear: item['brand_year_founderd'] == null ? '' : item['brand_year_founderd'],
-               Country: item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
+               Country: item['brand_origin_country']==null?'':item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
                Name: item['brand_name'],
                id: item['id']));
          }
@@ -99,7 +100,7 @@ String? _scanBarcodeResult;
              Details: item['brand_description'],
              Type: 'product',
              FoundYear: item['brand_year_founderd'] == null ? '' : item['brand_year_founderd'],
-             Country: item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
+             Country: item['brand_origin_country']==null?'':item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
              Name: item['brand_name'],
              id: item['id']));
        }
@@ -226,7 +227,7 @@ String? _scanBarcodeResult;
           Details: item['brand_description'],
           Type: 'product',
           FoundYear: item['brand_year_founderd'] == null ? '' : item['brand_year_founderd'],
-          Country: item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
+          Country: item['brand_origin_country']==null?'':item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
           Name: item['brand_name'],
           id: item['id']));
     }
@@ -521,7 +522,11 @@ String? _scanBarcodeResult;
         ],
         onTap: (Stateindex) {
           if(Stateindex == 1){
+            if(isSaved)
             Navigator.push(context, MaterialPageRoute(builder: (ctx) => MyAccount()));
+            else
+              Navigator.push(context, MaterialPageRoute(builder: (ctx) => LoginAndRegisterScreen()));
+
           }
         },
         currentIndex: Stateindex,

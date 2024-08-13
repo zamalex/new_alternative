@@ -59,7 +59,7 @@ class _MyAccount extends State<MyAccount> {
         backgroundColor: Color(0xFF009639),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             height: 15,
@@ -73,7 +73,7 @@ class _MyAccount extends State<MyAccount> {
             height: 20,
           ),
           Stack(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.bottomCenter,
             children: [
               Container(
                   child: InkWell(
@@ -89,16 +89,20 @@ class _MyAccount extends State<MyAccount> {
               Image.asset('assets/images/camera11.png'),
             ],
           ),
-          Text(
-            name ?? '',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+          Center(
+            child: Text(
+              name ?? '',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+            ),
           ),
-          Text(
-            email ?? '',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-                color: Color.fromRGBO(217, 217, 217, 1)),
+          Center(
+            child: Text(
+              email ?? '',
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  color: Color.fromRGBO(217, 217, 217, 1)),
+            ),
           ),
           SizedBox(
             height: 20,
@@ -431,6 +435,52 @@ class _MyAccount extends State<MyAccount> {
                 ),
               ),
             ),
+          ),  SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: InkWell(
+              onTap: () {
+                showDeleteDialog(context);
+
+
+              },
+              child: Container(
+                height: 60,
+                child: Card(
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Icon(
+                          Icons.delete,
+                          color: Color(0xFFED2E38),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Delete Account',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFFED2E38)),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFFED2E38),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -457,3 +507,51 @@ class _MyAccount extends State<MyAccount> {
     );
   }
 }
+
+showDeleteDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Delete"),
+    onPressed: () {
+      Navigator.pop(context);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (ctx) => LoginAndRegisterScreen()));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Careful"),
+    content: Text("Would you like to continue deleting your account?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+/*Future deleteAccount(int id) async {
+  try {
+    Response response =
+    await sl<DioClient>().delete('${Url.DELETE_USER_URL}/${id}');
+
+    return {'message': '', 'data': false};
+  } catch (e) {
+
+  }
+}*/

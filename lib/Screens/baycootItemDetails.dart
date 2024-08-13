@@ -35,7 +35,7 @@ class _BaycootItemDetails extends State<BaycootItemDetails> {
           Details: item['brand_additional_notes'] == null ? '' : item['brand_additional_notes'],
           Type: 'product',
           FoundYear: item['brand_year_founderd'] == null ? '' : item['brand_year_founderd'].toString(),
-          Country: item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
+          Country: item['brand_origin_country']==null?'':item['brand_origin_country']['name'] == null ? '' : item['brand_origin_country']['name'],
           Name: item['brand_name'],
           id: item['id']));
       AllItemBaycoot = loadItem;
@@ -176,7 +176,7 @@ class _BaycootItemDetails extends State<BaycootItemDetails> {
                   SizedBox(
                     width: 20,
                   ),
-                  Expanded(
+                 /* Expanded(
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -211,7 +211,7 @@ class _BaycootItemDetails extends State<BaycootItemDetails> {
                         ),
                       ),
                     ),
-                  ),
+                  ),*/
                   SizedBox(
                     width: 20,
                   ),
@@ -276,7 +276,7 @@ class _BaycootItemDetails extends State<BaycootItemDetails> {
                       mainAxisSpacing: 20,
                     ),
                     children: List.generate(
-                      AllItemBaycoot.length <= 4 ? AllItemBaycoot.length : 4,
+                      AllItemBaycoot.length ,
                           (index) => GridItem(Item: AllItemBaycoot[index]),
                     )),
               ),
