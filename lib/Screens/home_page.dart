@@ -7,6 +7,7 @@ import 'package:alternative_new/Locale/locale_controller.dart';
 import 'package:alternative_new/widgets/custom_widgets.dart';
 import 'package:country_ip/country_ip.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -143,74 +144,77 @@ class _HomePage extends State<HomePage> {
   }
 
   void searchWithAI(XFile selectedFile) async {
-    setState(() {
-      if (selectedFile != null) {
-        final file = File(selectedFile!.path);
-        final gemini = Gemini.instance;
+    EasyLoading.show();
+    if (selectedFile != null) {
+      final file = File(selectedFile!.path);
+      final gemini = Gemini.instance;
 
-        gemini.textAndImage(
-          generationConfig: GenerationConfig(temperature: 0),
-          text:
-          "what is the brand name and the country developed it?, making the response exactly in this format: brand name:, brand country:",
-          images: [file.readAsBytesSync()],
-        ).then((value) {
-          setState(() {
-            log(value?.content?.parts?.last.text ?? '');
-            final response = value?.content?.parts?.last.text ?? '';
-            isLoadingMoreForeign = false;
-            print(response);
-            showDialog(
-              context: context,
-              builder: (context) => Center(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'AI response',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        response,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextButton.icon(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(Icons.check, color: Colors.green),
-                              label: Text('OK',
-                                  style: TextStyle(color: Colors.green)),
-                            ),
+      print(selectedFile.path);
+
+      gemini.textAndImage(
+        generationConfig: GenerationConfig(temperature: 0),
+        text:
+        "what is the brand name and the country developed it?, making the response exactly in this format: brand name:, brand country:",
+        images: [file.readAsBytesSync()],
+      ).then((value) {
+        setState(() {
+          EasyLoading.dismiss();
+          log(value?.content?.parts?.last.text ?? '');
+          final response = value?.content?.parts?.last.text ?? '';
+          isLoadingMoreForeign = false;
+          print(response);
+          showDialog(
+            context: context,
+            builder: (context) => Center(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'AI response',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      response,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButton.icon(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(Icons.check, color: Colors.green),
+                            label: Text('OK',
+                                style: TextStyle(color: Colors.green)),
                           ),
-                          SizedBox(width: 10),
-                        ],
-                      )
-                    ],
-                  ),
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
+                        ),
+                        SizedBox(width: 10),
+                      ],
+                    )
+                  ],
                 ),
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
               ),
-            );
-          });
-        }).catchError((e) {
-          setState(() {
-            isLoadingMoreForeign = false;
-          });
+            ),
+          );
         });
-      }
-    });
+      }).catchError((e) {
+        log(e.toString());
+        EasyLoading.dismiss();
+
+      });
+    }
+
   }
 
   void SearchProductBaycoot(String Item) async {
