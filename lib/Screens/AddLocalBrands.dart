@@ -1,6 +1,7 @@
 import 'package:alternative_new/Data/dummyData.dart';
 import 'package:alternative_new/Model/GridItemModel.dart';
 import 'package:alternative_new/Screens/addAlternative.dart';
+import 'package:alternative_new/Screens/home_page.dart';
 import 'package:alternative_new/widgets/gridItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../main.dart';
 
 class AddLocalBrands extends StatefulWidget{
   const AddLocalBrands({super.key});
@@ -63,6 +66,8 @@ class _AddLocalBrands extends State<AddLocalBrands>{
         centerTitle: true,
       ),
       body: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: kPrimaryColor),
         width: double.infinity,
           child: FutureBuilder(future: loadedItemsnotBaycoot, builder: (context, snapshot){
             if(snapshot.connectionState == ConnectionState.waiting)
@@ -73,63 +78,68 @@ class _AddLocalBrands extends State<AddLocalBrands>{
             else if (snapshot.data!.isEmpty)
               return Center(child: Text("No items added yet"));
             else
-              return Column(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child:
-                        Column(
-                          children: [
-                            Container(
-                              height: 20,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF009639),
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(12),
-                                      bottomLeft: Radius.circular(12))),
-                            ),
-                            SizedBox(height: 40,),
-                            GridView(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  crossAxisSpacing: 5,
-                                  childAspectRatio: 1,
-                                  mainAxisSpacing: 20,
-                                ),
-                                children: List.generate(
-                                  AllItemnotbaycoot.length,
-                                      (index) => GridItem(Item: AllItemnotbaycoot[index]),
-                                )),
-                            SizedBox(height: 150,),
-                          ],
-                        ),
+              return Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+
+                child: Column(
+
+                  children: [
+                    SizedBox(height: 10,),
+                    Row(
+                      children: [
+                        BoycottButton(isBoycott: false,),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: 5,),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (ctx) => NewAlternative(isBaycoot: 0, flag: 0,)));
-                    },
-                    child: Container(
-                      width: 237,
-                      height: 52,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF009639)
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child:
+                          Column(
+                            children: [
+
+                              SizedBox(height: 40,),
+                              GridView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 5,
+                                    childAspectRatio: 1,
+                                    mainAxisSpacing: 20,
+                                  ),
+                                  children: List.generate(
+                                    AllItemnotbaycoot.length,
+                                        (index) => GridItem(Item: AllItemnotbaycoot[index]),
+                                  )),
+                              SizedBox(height: 150,),
+                            ],
+                          ),
                       ),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("7".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
-                          ]),
                     ),
-                  ),
-                  SizedBox(height: 30,)
-                ],
+                    SizedBox(height: 5,),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx) => NewAlternative(isBaycoot: 0, flag: 0,)));
+                      },
+                      child: Container(
+                        width: 237,
+                        height: 52,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFF009639)
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("7".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
+                              SizedBox(width: 10,),
+                              Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
+                            ]),
+                      ),
+                    ),
+                    SizedBox(height: 30,)
+                  ],
+                ),
               );
           }),
         ),

@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:convert';
 
 import 'package:alternative_new/Locale/locale_controller.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:alternative_new/Screens/home_page.dart';
@@ -34,6 +35,7 @@ class _loginWidget extends State<LoginWidget> {
   void LoginButton() async {
     if (_formkey.currentState!.validate()) {
       _formkey.currentState!.save();
+      EasyLoading.show();
       final url = Uri.parse("https://alternatifurunler.com/api/loginAPI");
       final response = await http.post(url,
           headers: {'content-type': 'application/json'},
@@ -50,6 +52,8 @@ class _loginWidget extends State<LoginWidget> {
       sharedprefServices.writeCache(key: 'name', value: userResponse['user']['name']);
       sharedprefServices.writeCache(key: 'image', value: userResponse['user']['image']);
       sharedprefServices.writeCache(key: 'token', value: token);
+
+      EasyLoading.dismiss();
 
       if (response.statusCode == 200) {
         isSaved = true;
@@ -75,148 +79,129 @@ class _loginWidget extends State<LoginWidget> {
 
     // TODO: implement build
     return Container(
-      child: Expanded(
-        child: Column(
-          children: [
-            Text(
-              "32".tr,
-              style: TextStyle(
-                  color: Color(0xFF121212),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Form(
-              key: _formkey,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: Column(children: [
-                  Container(
-                    height: 60,
-                    child: TextFormField(
-                      onSaved: (value) {
-                        _enteredEmail = value!;
-                      },
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.contains('@') == false)
-                          return "48".tr;
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.mail,
-                              color: Color.fromRGBO(217, 217, 217, 20)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          hintText: '39'.tr,
-                          hintStyle: TextStyle(
-                              color: Color.fromRGBO(217, 217, 217, 20))),
-                    ),
+      height:400,
+      child: Column(
+        children: [
+          Text(
+            "32".tr,
+            style: TextStyle(
+                color: Color(0xFF121212),
+                fontWeight: FontWeight.w600,
+                fontSize: 22),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Form(
+            key: _formkey,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Column(children: [
+                Container(
+                  height: 60,
+                  child: TextFormField(
+                    onSaved: (value) {
+                      _enteredEmail = value!;
+                    },
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          value.contains('@') == false)
+                        return "48".tr;
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail,
+                            color: Color.fromRGBO(217, 217, 217, 20)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        hintText: '39'.tr,
+                        hintStyle: TextStyle(
+                            color: Color.fromRGBO(217, 217, 217, 20))),
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    height: 60,
-                    child: TextFormField(
-                      obscureText: obscureText1,
-                      onSaved: (value) {
-                        _enteredPassword = value!;
-                      },
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 6 ||
-                            value.length < 1)
-                          return "49".tr;
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Color.fromRGBO(217, 217, 217, 20),
-                          ),
-                          suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                if(obscureText1 == true)
-                                  obscureText1 = false;
-                                else
-                                  obscureText1 = true;
+                ),
+                SizedBox(height: 20),
+                Container(
+                  height: 60,
+                  child: TextFormField(
+                    obscureText: obscureText1,
+                    onSaved: (value) {
+                      _enteredPassword = value!;
+                    },
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          value.length < 6 ||
+                          value.length < 1)
+                        return "49".tr;
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Color.fromRGBO(217, 217, 217, 20),
+                        ),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              if(obscureText1 == true)
+                                obscureText1 = false;
+                              else
+                                obscureText1 = true;
 
-                              });
-                            },
-                            child: obscureText1 ? Icon(Icons.visibility_off,
-                                color: Color.fromRGBO(217, 217, 217, 20)) :Icon(Icons.visibility,
-                                color: Color.fromRGBO(217, 217, 217, 20)) ,
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          hintText: '40'.tr,
-                          hintStyle: TextStyle(
-                            color: Color.fromRGBO(217, 217, 217, 20),
-                          )),
-                    ),
-                  )
-                ]),
-              ),
+                            });
+                          },
+                          child: obscureText1 ? Icon(Icons.visibility_off,
+                              color: Color.fromRGBO(217, 217, 217, 20)) :Icon(Icons.visibility,
+                              color: Color.fromRGBO(217, 217, 217, 20)) ,
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        hintText: '40'.tr,
+                        hintStyle: TextStyle(
+                          color: Color.fromRGBO(217, 217, 217, 20),
+                        )),
+                  ),
+                )
+              ]),
             ),
-            // Row(
-            //   children: [
-            //     Spacer(),
-            //     InkWell(
-            //       child: Text(
-            //         "Forgot Password ?",
-            //         style: TextStyle(
-            //             color: Color(0xFF009639),
-            //             fontWeight: FontWeight.w600,
-            //             fontSize: 12,
-            //             decoration: TextDecoration.underline,
-            //             decorationColor: Color(0xFF009639)),
-            //       ),
-            //     ),
-            //     SizedBox(
-            //       width: 20,
-            //     )
-            //   ],
-            // ),
-            Spacer(),
-            Container(
-              height: 52,
-              width: 201,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  LoginButton();
-                },
-                label: Icon(
-                  Icons.arrow_forward_sharp,
+          ),
+
+         Spacer(),
+          Container(
+            height: 52,
+            width: 201,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                LoginButton();
+              },
+              label: Icon(
+                Icons.arrow_forward_sharp,
+                color: Color(0xFFFEFEFE),
+              ),
+              icon: Text(
+                "30".tr,
+                style: TextStyle(
                   color: Color(0xFFFEFEFE),
                 ),
-                icon: Text(
-                  "30".tr,
-                  style: TextStyle(
-                    color: Color(0xFFFEFEFE),
-                  ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xFF009639)), // Background color
-                  foregroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xFFFEFEFE)), // Text and icon color
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // <-- Radius
-                    ),
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Color(0xFF009639)), // Background color
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    Color(0xFFFEFEFE)), // Text and icon color
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // <-- Radius
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: 40,
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 40,
+          )
+        ],
       ),
     );
   }

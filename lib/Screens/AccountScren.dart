@@ -59,430 +59,431 @@ class _MyAccount extends State<MyAccount> {
         backgroundColor: Color(0xFF009639),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          Container(
-            height: 15,
-            decoration: BoxDecoration(
-                color: Color(0xFF009639),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(12),
-                    bottomLeft: Radius.circular(12))),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Stack(
-            alignment: Alignment.bottomCenter,
+      body: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: kPrimaryColor),
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+
+          child: ListView(
             children: [
-              Container(
-                  child: InkWell(
-                onTap: () {},
-                child: CachedNetworkImage(
-                  height: 100,
-                  width: 100,
-                  imageUrl: image ?? '',
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+          
+              SizedBox(
+                height: 20,
+              ),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                      child: InkWell(
+                    onTap: () {},
+                    child: CachedNetworkImage(
+                      height: 100,
+                      width: 100,
+                      imageUrl: image ?? '',
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  )),
+                  Image.asset('assets/images/camera11.png'),
+                ],
+              ),
+              Center(
+                child: Text(
+                  name ?? '',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                 ),
-              )),
-              Image.asset('assets/images/camera11.png'),
+              ),
+              Center(
+                child: Text(
+                  email ?? '',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Color.fromRGBO(217, 217, 217, 1)),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => EditProfile()))
+                        .then((value) => {LoadUserData()});
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Image.asset('assets/images/personIcon.png'),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "6".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (ctx) => AddLocalBrands()));
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'assets/images/Union.png',
+                              color: Color(0xFF009639),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "7".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (ctx) => AddForiegnBrands()));
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'assets/images/Union.png',
+                              color: Color(0xFF009639),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "8".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (ctx) => ChangeLanguageScreen()));
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'assets/images/Language.png',
+                              color: Color(0xFF009639),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "9".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () async {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (ctx) => ContactUsWeb()));
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'assets/images/headphones.png',
+                              color: Color(0xFF009639),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "10".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    OpenStore.instance.open(
+                      appStoreId: '6471507542', // AppStore id of your app for iOS
+                      appStoreIdMacOS:
+                          '6471507542', // AppStore id of your app for MacOS (appStoreId used as default)
+                      androidAppBundleId:
+                          'com.sahla.boycott', // Android app bundle package name
+                      // windowsProductId: '9NZTWSQNTD0S' // Microsoft store id for Widnows apps
+                    );
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Icon(
+                              Icons.star,
+                              color: Color(0xFF009639),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "11".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF009639),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    sharedprefServices.removeCache();
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (ctx) => LoginAndRegisterScreen()));
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Icon(
+                              Icons.logout_sharp,
+                              color: Color(0xFFED2E38),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "12".tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFED2E38)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFFED2E38),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),  SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    showDeleteDialog(context);
+          
+          
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Icon(
+                              Icons.delete,
+                              color: Color(0xFFED2E38),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Delete Account',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFED2E38)),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFFED2E38),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
-          Center(
-            child: Text(
-              name ?? '',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-            ),
-          ),
-          Center(
-            child: Text(
-              email ?? '',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Color.fromRGBO(217, 217, 217, 1)),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                        MaterialPageRoute(builder: (ctx) => EditProfile()))
-                    .then((value) => {LoadUserData()});
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Image.asset('assets/images/personIcon.png'),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "6".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => AddLocalBrands()));
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Image.asset(
-                          'assets/images/Union.png',
-                          color: Color(0xFF009639),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "7".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => AddForiegnBrands()));
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Image.asset(
-                          'assets/images/Union.png',
-                          color: Color(0xFF009639),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "8".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (ctx) => ChangeLanguageScreen()));
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Image.asset(
-                          'assets/images/Language.png',
-                          color: Color(0xFF009639),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "9".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () async {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => ContactUsWeb()));
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Image.asset(
-                          'assets/images/headphones.png',
-                          color: Color(0xFF009639),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "10".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                OpenStore.instance.open(
-                  appStoreId: '6471507542', // AppStore id of your app for iOS
-                  appStoreIdMacOS:
-                      '6471507542', // AppStore id of your app for MacOS (appStoreId used as default)
-                  androidAppBundleId:
-                      'com.sahla.boycott', // Android app bundle package name
-                  // windowsProductId: '9NZTWSQNTD0S' // Microsoft store id for Widnows apps
-                );
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Icon(
-                          Icons.star,
-                          color: Color(0xFF009639),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "11".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF009639),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                sharedprefServices.removeCache();
-                Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (ctx) => LoginAndRegisterScreen()));
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Icon(
-                          Icons.logout_sharp,
-                          color: Color(0xFFED2E38),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "12".tr,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFFED2E38)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFFED2E38),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),  SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                showDeleteDialog(context);
-
-
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Icon(
-                          Icons.delete,
-                          color: Color(0xFFED2E38),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Delete Account',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFFED2E38)),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFFED2E38),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [

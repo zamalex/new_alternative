@@ -4,6 +4,11 @@ class MyLocale implements Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'ar': {
+          "recent":"الاحدث",
+          "foreign":"أجنبية",
+          "local":"محلي",
+          "welcome":"اهلا",
+          "discover":"اكتشف المنتجات الاجنبية وبدائلها",
           "1": "المنتجات المحلية الرائجة",
           "2": "اظهر المزيد",
           "3": "المنتجات الاجنبية الرائجة",
@@ -62,6 +67,11 @@ class MyLocale implements Translations {
           "56": "اضف صورة",
         },
         'en': {
+          "recent":"Recently Viewed",
+          "foreign":"Foreign Brand",
+          "local":"Local Brand",
+          "welcome":"Welcome",
+          "discover":"Discover Alternatives & Foreign Brands",
           "1": "Popular Local Brands",
           "2": "show more",
           "3": "Popular Foreign Brands",
@@ -120,7 +130,12 @@ class MyLocale implements Translations {
           "56": "add Image"
         },
     'tr': {
-      "1": "Popüler Yerel Markalar",
+  "recent": "Son Görüntülenenler",
+  "foreign": "Yabancı Marka",
+  "local": "Yerel Marka",
+  "welcome": "Hoş Geldiniz",
+  "discover": "Alternatifleri ve Yabancı Markaları Keşfedin"
+      ,"1": "Popüler Yerel Markalar",
       "2": "daha fazla göster",
       "3": "Popüler Yabancı Markalar",
       "4": "Dili Değiştir",

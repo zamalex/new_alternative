@@ -1,8 +1,11 @@
 import 'package:alternative_new/Screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../Screens/login_and_registerScreen.dart';
 class RegisterationasanOrganization extends StatefulWidget {
   const RegisterationasanOrganization({super.key});
 
@@ -32,6 +35,9 @@ class _RegisterationasanOrganization extends State<RegisterationasanOrganization
             SnackBar(content: Text("The Password must Match")));
         return;
       }
+
+      EasyLoading.show();
+
       final url = Uri.parse('https://alternatifurunler.com/api/registerAPI');
       final response = await http.post(url,
           headers: {'content-type': 'application/json'},
@@ -39,11 +45,15 @@ class _RegisterationasanOrganization extends State<RegisterationasanOrganization
             'name': _enteredName,
             'email': _enteredEmail,
             'password': _enteredPassword.toString(),
+            'type':'organization'
           }));
+
+      EasyLoading.dismiss();
+
       if (response.statusCode == 200 || response.statusCode == 201 ) {
         Navigator.pop(context);
         Navigator.push(
-            context, MaterialPageRoute(builder: (ctx) => HomePage()));
+            context, MaterialPageRoute(builder: (ctx) => LoginAndRegisterScreen()));
       } else {
         print(response.statusCode);
         print(response.body);

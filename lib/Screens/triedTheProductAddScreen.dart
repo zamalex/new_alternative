@@ -137,197 +137,197 @@ class _TriedTheProductAdd extends State<TriedTheProductAdd> {
         centerTitle: true,
       ),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 10,
-                decoration: BoxDecoration(
-                    color: Color(0xFF009639),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12))),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "22".tr,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: kPrimaryColor),
+        child: Container(
+          padding: EdgeInsets.only(bottom: 10),
+          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+
+          width: double.infinity,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+
+                SizedBox(
+                  height: 40,
                 ),
-              ),
-              Text(
-                "23".tr,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
+                Text(
+                  "22".tr,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Form(
-                key: _formkey,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 50,
-                          child: TextFormField(
-                            onSaved: (value){
-                              _enteredName = value;
-                            },
-                            validator: (value) {
-                              if(value!.isEmpty)
-                                return '50'.tr;
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.layers,
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                hintText: '51'.tr,
-                                hintStyle: TextStyle(
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                )),
-                          ),
-                        ),
-                        SizedBox(height: 20,),
-                        Container(
-                          height: 50,
-                          child: TextFormField(
-                            onSaved: (value){
-                              _enteredDescription = value;
-                            },
-                            validator: (value) {
-                              if(value!.isEmpty)
-                                return '50'.tr;
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.info_outline,
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                hintText: '52'.tr,
-                                hintStyle: TextStyle(
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                )),
-                          ),
-                        ),
-                        SizedBox(height: 20,),
-                        Container(
-                          height: 50,
-                          child: TextFormField(
-                            validator: (value) {
-                              if(value!.isEmpty)
-                                return '50'.tr;
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.flag,
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                hintText: '28'.tr,
-                                hintStyle: TextStyle(
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                )),
-                          ),
-                        ),
-                        SizedBox(height: 20,),
-                        Container(
-                          height: 250,
-                          child: TextFormField(
-                            onSaved: (value){
-                              _enteredNotes = value;
-                            },
-                            validator: (value) {
-                              if(value!.isEmpty)
-                                return '50'.tr;
-                              return null;
-                            },
-                            maxLines: 8,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.info_outline,
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                hintText: '53'.tr,
-                                hintStyle: TextStyle(
-                                  color: Color.fromRGBO(217, 217, 217, 20),
-                                )),
-                          ),
-                        ),
-                        SizedBox(height: 20,),
-                        InkWell(
-                          onTap: () async{
-                            final ImagePicker picker = ImagePicker();
-                            final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-                            _enteredImage = image!.path.toString();
-                          },
-                          child: Container(
-                            width: 237,
-                            height: 52,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF009639)
+                Text(
+                  "23".tr,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Form(
+                  key: _formkey,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 50,
+                            child: TextFormField(
+                              onSaved: (value){
+                                _enteredName = value;
+                              },
+                              validator: (value) {
+                                if(value!.isEmpty)
+                                  return '50'.tr;
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.layers,
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  hintText: '51'.tr,
+                                  hintStyle: TextStyle(
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  )),
                             ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("56".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
-                                  SizedBox(width: 10,),
-                                  Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
-                                ]),
                           ),
-                        ),
-                        SizedBox(height: 20,),
-                        InkWell(
-                          onTap: () {
-                            if(_formkey.currentState!.validate()) {
-                              _formkey.currentState!.save();
-                              if (widget.isBaycoot == 1) {
-                                _saveItembaycoot();
-                              } else if (widget.isBaycoot == 0) {
-                                _saveItemnotbaycoot();
+                          SizedBox(height: 20,),
+                          Container(
+                            height: 50,
+                            child: TextFormField(
+                              onSaved: (value){
+                                _enteredDescription = value;
+                              },
+                              validator: (value) {
+                                if(value!.isEmpty)
+                                  return '50'.tr;
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.info_outline,
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  hintText: '52'.tr,
+                                  hintStyle: TextStyle(
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  )),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          Container(
+                            height: 50,
+                            child: TextFormField(
+                              validator: (value) {
+                                if(value!.isEmpty)
+                                  return '50'.tr;
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.flag,
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  hintText: '28'.tr,
+                                  hintStyle: TextStyle(
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  )),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          Container(
+                            height: 250,
+                            child: TextFormField(
+                              onSaved: (value){
+                                _enteredNotes = value;
+                              },
+                              validator: (value) {
+                                if(value!.isEmpty)
+                                  return '50'.tr;
+                                return null;
+                              },
+                              maxLines: 8,
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.info_outline,
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  hintText: '53'.tr,
+                                  hintStyle: TextStyle(
+                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  )),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          InkWell(
+                            onTap: () async{
+                              final ImagePicker picker = ImagePicker();
+                              final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                              _enteredImage = image!.path.toString();
+                            },
+                            child: Container(
+                              width: 237,
+                              height: 52,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xFF009639)
+                              ),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("56".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
+                                    SizedBox(width: 10,),
+                                    Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
+                                  ]),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          InkWell(
+                            onTap: () {
+                              if(_formkey.currentState!.validate()) {
+                                _formkey.currentState!.save();
+                                if (widget.isBaycoot == 1) {
+                                  _saveItembaycoot();
+                                } else if (widget.isBaycoot == 0) {
+                                  _saveItemnotbaycoot();
+                                }
                               }
-                            }
-                          },
-                          child: Container(
-                            width: 237,
-                            height: 52,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF009639)
+                            },
+                            child: Container(
+                              width: 237,
+                              height: 52,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xFF009639)
+                              ),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("24".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
+                                    SizedBox(width: 10,),
+                                    Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
+                                  ]),
                             ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("24".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
-                                  SizedBox(width: 10,),
-                                  Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
-                                ]),
-                          ),
-                        )
-                      ],
-                    ),
-                  ))
-            ],
+                          )
+                        ],
+                      ),
+                    ))
+              ],
+            ),
           ),
         ),
       ),

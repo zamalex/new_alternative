@@ -8,6 +8,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:alternative_new/Model/GridItemModel.dart';
 
+import '../widgets/custom_widgets.dart';
+
 
 class PopularLocalBrands extends StatefulWidget{
    PopularLocalBrands({super.key, required this.localBrands});
@@ -40,6 +42,26 @@ class _PopularLocalBrands extends State<PopularLocalBrands>{
       setState(() {
             AllItemNotBaycoot = _loadedItems1;
       });
+  }
+
+  Future<List<GridItemModel>> _loadItemsnotBaycoot() async {
+    final url = Uri.parse('https://alternatifurunler.com/api/brandsAlternative?location_id=$CountryId');
+    final response = await http.get(url);
+    print(CountryId);
+    print(response.body);
+    final Map<String, dynamic> listdata1 = json.decode(response.body);
+    final List<GridItemModel> _loadedItems1= [];
+
+
+    for(final item in listdata1['data']){
+      _loadedItems1.add(GridItemModel(isBaycoot: 1, image: item['brand_logo'], Details: item['brand_description'] == null ? '' : item['brand_description'] ?? '', Type: 'product', FoundYear: '1995', Country: item['brand_origin_country'] == null ? '' : item['brand_origin_country']['name'] ?? '', Name: item['brand_name'], id: item['id']));
+    }
+    widget.localBrands = _loadedItems1;
+
+    setState(() {
+
+    });
+    return _loadedItems1;
   }
 
   int Stateindex = 0;
@@ -93,9 +115,20 @@ class _PopularLocalBrands extends State<PopularLocalBrands>{
                                   itemSearch = value;
                                 },
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    color: Color.fromRGBO(217, 217, 217, 20),
+                                  prefixIcon: Row(
+                                    children: [
+                                      SizedBox(width: 10,),
+                                      Container(
+                                          height: 20,
+                                          width: 50,
+                                          child: CountryDropdown(selectedCountryId: CountryId??0,onSelect: (){
+                                            _loadItemsnotBaycoot();
+                                          },)),
+                                      Icon(
+                                        Icons.search,
+                                        color: Color.fromRGBO(217, 217, 217, 20),
+                                      ),
+                                    ],
                                   ),
                                   hintText: '16'.tr,
                                   contentPadding: EdgeInsets.only(top: 2),

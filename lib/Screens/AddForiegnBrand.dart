@@ -1,11 +1,14 @@
 import 'package:alternative_new/Data/dummyData.dart';
 import 'package:alternative_new/Model/GridItemModel.dart';
 import 'package:alternative_new/Screens/addAlternative.dart';
+import 'package:alternative_new/main.dart';
 import 'package:alternative_new/widgets/gridItem.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import 'home_page.dart';
 
 class AddForiegnBrands extends StatefulWidget{
   const AddForiegnBrands({super.key});
@@ -58,6 +61,8 @@ class _AddForiegnBrands extends State<AddForiegnBrands>{
         centerTitle: true,
       ),
       body: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: kPrimaryColor),
         width: double.infinity,
         child: FutureBuilder(future: loadedItems, builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting)
@@ -68,63 +73,68 @@ class _AddForiegnBrands extends State<AddForiegnBrands>{
           else if (snapshot.data!.isEmpty)
             return Center(child: Text("No items added yet"));
           else
-            return Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child:
-                    Column(
-                      children: [
-                        Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF009639),
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(12),
-                                  bottomLeft: Radius.circular(12))),
-                        ),
-                        SizedBox(height: 40,),
-                        GridView(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 5,
-                              childAspectRatio: 1,
-                              mainAxisSpacing: 20,
-                            ),
-                            children: List.generate(
-                              AllItem.length,
-                                  (index) => GridItem(Item: AllItem[index]),
-                            )),
-                        SizedBox(height: 150,),
-                      ],
-                    ),
+            return Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
+
+              child: Column(
+                
+                children: [
+                  SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      BoycottButton(isBoycott: true,),
+                    ],
                   ),
-                ),
-                SizedBox(height: 5,),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (ctx) => NewAlternative(isBaycoot: 1, flag: 0,)));
-                  },
-                  child: Container(
-                    width: 237,
-                    height: 52,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xFF009639)
-                    ),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child:
+                      Column(
                         children: [
-                          Text("8".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
-                          SizedBox(width: 10,),
-                          Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
-                        ]),
+
+                          SizedBox(height: 40,),
+                          GridView(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 5,
+                                childAspectRatio: 1,
+                                mainAxisSpacing: 20,
+                              ),
+                              children: List.generate(
+                                AllItem.length,
+                                    (index) => GridItem(Item: AllItem[index]),
+                              )),
+                          SizedBox(height: 150,),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 30,)
-              ],
+                  SizedBox(height: 5,),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (ctx) => NewAlternative(isBaycoot: 1, flag: 0,)));
+                    },
+                    child: Container(
+                      width: 237,
+                      height: 52,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xFF009639)
+                      ),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("8".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
+                          ]),
+                    ),
+                  ),
+                  SizedBox(height: 30,)
+                ],
+              ),
             );
         }),
       ),

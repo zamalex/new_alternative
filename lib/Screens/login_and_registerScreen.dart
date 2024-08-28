@@ -28,19 +28,16 @@ class _LoginAndRegisterScreen extends State<LoginAndRegisterScreen> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(color: Color(0xFF009639)),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 60),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/Logo.png',
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Container(
-                    height: 615.12,
-                    width: 342,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 70),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height - 100, // Adjust height here
+                    width: double.infinity,
                     decoration: BoxDecoration(
                         color: Color(0xFFFEFEFE),
                         borderRadius: BorderRadius.circular(12)),
@@ -48,6 +45,10 @@ class _LoginAndRegisterScreen extends State<LoginAndRegisterScreen> {
                       children: [
                         SizedBox(
                           height: 25,
+                        ),
+                        Image.asset(
+                          height: 150,
+                          'assets/images/appicon.jpg',
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -71,8 +72,8 @@ class _LoginAndRegisterScreen extends State<LoginAndRegisterScreen> {
                                 child: TextButton(
                                     onPressed: () {
                                       setState(() {
-                                       currentForm = LoginWidget();
-                                       isLogin = true;
+                                        currentForm = LoginWidget();
+                                        isLogin = true;
                                       });
                                     },
                                     child: Text(
@@ -92,7 +93,6 @@ class _LoginAndRegisterScreen extends State<LoginAndRegisterScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   color: isLogin ? Color(0xFFFEFEFE) : Color(0xFF009639),
                                 ),
-
                                 padding: EdgeInsets.only(right: 15, left: 15),
                                 child: TextButton(
                                     onPressed: () {
@@ -117,12 +117,17 @@ class _LoginAndRegisterScreen extends State<LoginAndRegisterScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        currentForm
+                        Expanded(
+                          child: SingleChildScrollView(
+                            physics: NeverScrollableScrollPhysics(),
+                            child: currentForm,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

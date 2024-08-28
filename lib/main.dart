@@ -2,16 +2,42 @@ import 'package:alternative_new/Locale/loacle.dart';
 import 'package:alternative_new/Locale/locale_controller.dart';
 import 'package:alternative_new/Screens/home_page.dart';
 import 'package:alternative_new/Screens/splash.dart';
+import 'package:alternative_new/widgets/custom_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:alternative_new/Screens/login_and_registerScreen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:country_ip/country_ip.dart';
 
+import 'Model/GridItemModel.dart';
+import 'Model/country.dart';
+
 bool isSaved = false;
 int? CountryId;
+List<Country> countries = [];
+final kPrimaryColor = Color(0xFF009639);
+List<GridItemModel> recentlyViewed = [];
+
+
+getMyCountry()async{
+  final countryIpResponse = await CountryIp.find();
+  var countryName = countryIpResponse?.country;
+
+  /* if (countryName == "Turkey")
+    CountryId = 225;
+  else if (countryName == "Egypt") CountryId = 65;
+
+ */
+  print('your app running from $countryName');
+
+  CountryId = getCountryIdByName(countryName??'Egypt');
+
+  print('country id is ${CountryId}');
+}
+
 void main() async {
   MyLocaleController controller = Get.put(MyLocaleController());
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,15 +52,9 @@ void main() async {
     isSaved = false;
   else
     isSaved = true;
-  final countryIpResponse = await CountryIp.find();
-  final countryName = countryIpResponse?.country;
 
-  if (countryName == "Turkey")
-    CountryId = 225;
-  else if (countryName == "Egypt") CountryId = 65;
+  getMyCountry();
 
-  // User's country : United States
-  // User's ip : 9.9.9.9
   runApp(const MyApp());
 }
 
@@ -76,6 +96,7 @@ class _MyAppState extends State<MyApp> {
     MyLocaleController controller = Get.put(MyLocaleController());
     // print(sharedprefServices.readCache(key: 'token'));
     return GetMaterialApp(
+      builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       locale: controller.initialLang,
       translations: MyLocale(),
@@ -99,7 +120,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: isSaved == false ? SplashScreen() : HomePage(),
+      home:  SplashScreen(),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:alternative_new/Locale/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../main.dart';
+
 class ChangeLanguageScreen extends StatefulWidget {
   const ChangeLanguageScreen({super.key});
 
@@ -43,182 +45,182 @@ class _ChangeLanguageScreen extends State<ChangeLanguageScreen> {
         backgroundColor: Color(0xFF009639),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 15,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Color(0xFF009639),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12))),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                controllerLang.ChangeLang("ar");
-                setState(() {
-                  _groupvalue = 1;
-                });
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "العربية",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      RadioMenuButton(
-                          value: 1,
-                          groupValue: _groupvalue,
-                          onChanged: (value) {
+      body: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: kPrimaryColor),
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(12)),
 
-                            setState(() {
+          child: Column(
+            children: [
 
-                              _groupvalue = value!;
-                            });
-                          },
-                          child: Text('')),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
+              SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    controllerLang.ChangeLang("ar");
+                    setState(() {
+                      _groupvalue = 1;
+                    });
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "العربية",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          RadioMenuButton(
+                              value: 1,
+                              groupValue: _groupvalue,
+                              onChanged: (value) {
+
+                                setState(() {
+
+                                  _groupvalue = value!;
+                                });
+                              },
+                              child: Text('')),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                controllerLang.ChangeLang("en");
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    controllerLang.ChangeLang("en");
 
-                setState(() {
-                  _groupvalue = 2;
-                });
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
+                    setState(() {
+                      _groupvalue = 2;
+                    });
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "ُEnglish",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          RadioMenuButton(
+                              value: 2,
+                              groupValue: _groupvalue,
+                              onChanged: (value) {
+                                controllerLang.ChangeLang("en");
+                                setState(() {
+                                  _groupvalue = value!;
+                                });
+                              },
+                              child: Text('')),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
                       ),
-                      Text(
-                        "ُEnglish",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      RadioMenuButton(
-                          value: 2,
-                          groupValue: _groupvalue,
-                          onChanged: (value) {
-                            controllerLang.ChangeLang("en");
-                            setState(() {
-                              _groupvalue = value!;
-                            });
-                          },
-                          child: Text('')),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                controllerLang.ChangeLang("tr");
-                setState(() {
-                  _groupvalue = 3;
-                });
-              },
-              child: Container(
-                height: 60,
-                child: Card(
-                  child: Row(
-                    children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: InkWell(
+                  onTap: () {
+                    controllerLang.ChangeLang("tr");
+                    setState(() {
+                      _groupvalue = 3;
+                    });
+                  },
+                  child: Container(
+                    height: 60,
+                    child: Card(
+                      child: Row(
+                        children: [
 
-                      SizedBox(
-                        width: 20,
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "Türkçe",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF009639)),
+                          ),
+                          Spacer(),
+                          RadioMenuButton(
+                              value: 3,
+                              groupValue: _groupvalue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _groupvalue = value!;
+                                });
+                              },
+                              child: Text('')),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
                       ),
-                      Text(
-                        "Türkçe",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF009639)),
-                      ),
-                      Spacer(),
-                      RadioMenuButton(
-                          value: 3,
-                          groupValue: _groupvalue,
-                          onChanged: (value) {
-                            setState(() {
-                              _groupvalue = value!;
-                            });
-                          },
-                          child: Text('')),
-                      SizedBox(
-                        width: 20,
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Expanded(child: Padding(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: Container(),
-          )),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                width: 237,
-                height: 52,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF009639)
+              Expanded(child: Padding(
+                padding: const EdgeInsets.only(bottom: 100),
+                child: Container(),
+              )),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 100),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 237,
+                    height: 52,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color(0xFF009639)
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("15".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
+                          SizedBox(width: 10,),
+                          Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
+                        ]),
+                  ),
                 ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("15".tr, style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20,fontWeight: FontWeight.w600),),
-                      SizedBox(width: 10,),
-                      Icon(Icons.arrow_forward, color: Color(0xFFFFFFFF),),
-                    ]),
-              ),
-            ),
-          )
-        ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
