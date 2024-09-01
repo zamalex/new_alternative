@@ -5,6 +5,7 @@ import 'package:alternative_new/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class GridItem extends StatelessWidget {
@@ -17,6 +18,7 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _showDetails(){
+      if(recentlyViewed.firstWhereOrNull((element) => element.id==Item.id,)==null)
       recentlyViewed.add(Item);
       if(Item.isBaycoot == 0)
         Navigator.push(context, MaterialPageRoute(builder: (ctx) => BaycootItemDetails(Item: Item)));
