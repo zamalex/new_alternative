@@ -138,6 +138,8 @@ class _HomePage extends State<HomePage> {
         id: item['id'],
       ));
     }
+    if(loadeditem.isEmpty)
+      return;
     Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => BaycootItemDetails(Item: loadeditem[0])));
     return;
